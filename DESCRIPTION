@@ -1,11 +1,20 @@
-Package: nbseg
+Package: censeg
 Type: Package
-Title: What the Package Does (Title Case)
+Title: Calculate Segregation Measures from Census Data
 Version: 0.1.0
-Author: Who wrote it
-Maintainer: The package maintainer <yourself@somewhere.net>
-Description: More about what it does (maybe more than one line)
-    Use four spaces when indenting paragraphs within the Description.
-License: What license is it under?
-Encoding: UTF-8
+Authors@R: c(person("Neal","Marquez",role=c("aut","cre","cph"),email="nmarquez@uw.edu"))
+Author: Neal Marquez [aut, cre, cph]
+Maintainer: Neal Marquez <nmarquez@uw.edu>
+Description: Calculates segregation measures from US census data provided
+    through the Census API and accessed in R using the tidycensus package.
+License: GPL (>= 2)
+BugReports: https://github.com/nmmarquez/censeg/issues
 LazyData: true
+Depends: 
+    R (>= 4.0.0),
+    tidycensus,
+    sf,
+    data.table,
+    parallel
+Encoding: UTF-8
+RoxygenNote: 7.1.1
