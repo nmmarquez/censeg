@@ -1,4 +1,4 @@
-# ar.matrix
+# Census Segregation Measures
 
 You can install `censeg` via devtools `devtools::install_github("nmmarquez/censeg")`  
 
