@@ -24,3 +24,9 @@ all_census_seg(year = 2010) %>%
 
 ![seg](https://i.imgur.com/aG5sh81.png "SW Segregation")
 
+### Current segregation measures
+- Thiel's H
+
+### Future segregation measures
+- Dissimilarity Index
+- Absolute Clustering
