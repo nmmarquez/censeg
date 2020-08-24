@@ -51,7 +51,9 @@ county, or CBSA.
 }
 \description{
 get_decennial_race uses the census api to download race &
-ethnicity data from a specified deccenial census. From this
+ethnicity data from a specified decennial census.
+Decennial census tables P0040\*\* P0050\*\* for the 2000 and 2010 census
+are used respectively. From this
 table the racial groups White, Black, American Indian or Alaskan Native,
 Asian, Native Hawaiian or Pacific Islander, some other race, and two or more
 Races are considered and treated as mutually exclusive categories for

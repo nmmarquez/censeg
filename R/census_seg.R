@@ -1,8 +1,10 @@
 #' A wrapper function for get_acs_race and a particular segregation function.
 #'
-#' @description census_seg uses the census api to download race and ethnicity
-#' data from a specified 5 year ACS survey from the table "B03002". From this
-#' table the racial groups White, Black, American Indian or Alaskan Native,
+#' @description census_seg uses the census api to download race & ethnicity
+#' data from a specified 5 year ACS survey from the table "B03002" or the
+#' decennial census tables P0040\*\* P0050\*\* for the 2000 and 2010 census
+#' respectively. From these
+#' tables the racial groups White, Black, American Indian or Alaskan Native,
 #' Asian, Native Hawaiian or Pacific Islander, some other race, and two or more
 #' Races are considered and treated as mutually exclusive categories for
 #' individuals who mark Non-Hispanic. Hispanic individuals are designated as

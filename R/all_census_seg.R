@@ -1,8 +1,10 @@
 #' A wrapper function for get_acs_race and a particular segregation function.
 #'
 #' @description all_census_seg uses the census api to download race & ethnicity
-#' data from a specified 5 year ACS survey from the table "B03002". From this
-#' table the racial groups White, Black, American Indian or Alaskan Native,
+#' data from a specified 5 year ACS survey from the table "B03002" or the
+#' decennial census tables P0040\*\* P0050\*\* for the 2000 and 2010 census
+#' respectively. From these
+#' tables the racial groups White, Black, American Indian or Alaskan Native,
 #' Asian, Native Hawaiian or Pacific Islander, some other race, and two or more
 #' Races are considered and treated as mutually exclusive categories for
 #' individuals who mark Non-Hispanic. Hispanic individuals are designated as
@@ -24,15 +26,11 @@
 #' FALSE.
 #' @param seg_func a segregation function from the censeg package. Defaults to
 #' `calc_theilsH`
-#' @param mc.cores The number of cores to use, i.e. at most how many child
-#' processes will be run simultaneously. The option is initialized from
-#' environment variable MC_CORES if set. Must be at least one,
-#' and parallelization requires at least two cores.
+#' @param ... Other parameters to pass to the seg_func.
 #'
 #' @return data frame with geography-race specific counts for all
 #' counties or CBSAs.
 #'
-#' @import parallel
 #' @import sf
 #'
 #' @examples
@@ -50,7 +48,7 @@ all_census_seg <- function(
     key = NULL,
     counties = FALSE,
     seg_func = calc_theilsH,
-    mc.cores = getOption("mc.cores", 2L)){
+    ...){
 
     if(year == 2010 | year == 2000){
         race_df <- rbindlist(lapply(
@@ -64,29 +62,18 @@ all_census_seg <- function(
             year = year, key = key, cache_table = cache_table))
     }
 
-    race_df[,STATE := str_sub(GEOID, 1, 2)]
-    race_df[,COUNTY := str_sub(GEOID, 3, 5)]
+    race_df[,STATE := substr(GEOID, 1, 2)]
+    race_df[,COUNTY := substr(GEOID, 3, 5)]
     hier_df <- merge(race_df, cbsa_county_df[,-5], all.x = TRUE)
 
     if(counties){
-        hier_df[,FIPS := str_c(STATE, COUNTY)]
-
-        out_df <- rbindlist(mclapply(unique(hier_df$FIPS), function(f){
-            sub_df <- seg_func(hier_df[FIPS == f,])
-            sub_df[, STATE := str_sub(f, 1, 2)]
-            sub_df[,COUNTY := str_sub(f, 3, 5)]
-        }, mc.cores = mc.cores))
+        out_df <- seg_func(hier_df, parent_geo = c("STATE", "COUNTY"), ...)
     }
 
     else{
         hier_df <- hier_df[!is.na(type),]
-
-        out_df <- rbindlist(mclapply(unique(hier_df$cbsacode), function(c){
-            sub_df <- seg_func(hier_df[cbsacode == c,])
-            sub_df[, cbsacode := c]
-            sub_df[, cbsatitle := hier_df[cbsacode == c,]$cbsatitle[1]]
-            sub_df[, type := hier_df[cbsacode == c,]$type[1]]
-        }, mc.cores = mc.cores))
+        p_g <- c("cbsacode", "cbsatitle", "type")
+        out_df <- seg_func(hier_df, parent_geo = p_g, ...)
     }
 
     copy(out_df)

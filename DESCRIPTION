@@ -14,7 +14,6 @@ Depends:
     R (>= 4.0.0),
     tidycensus,
     sf,
-    data.table,
-    parallel
+    data.table
 Encoding: UTF-8
 RoxygenNote: 7.1.1

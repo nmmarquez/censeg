@@ -8,6 +8,7 @@ The `censeg` package allows use to quickly calculate segrgeation measures in the
 library(censeg)
 library(dplyr)
 library(ggplot2)
+library(stringr)
 
 all_census_seg(year = 2010) %>%
     filter(str_ends(cbsatitle, ", CA|, NV|, AZ")) %>%
@@ -26,7 +27,7 @@ all_census_seg(year = 2010) %>%
 
 ### Current segregation measures
 - Thiel's H
+- Dissimilarity Index
 
 ### Future segregation measures
-- Dissimilarity Index
 - Absolute Clustering

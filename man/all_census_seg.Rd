@@ -11,7 +11,7 @@ all_census_seg(
   key = NULL,
   counties = FALSE,
   seg_func = calc_theilsH,
-  mc.cores = getOption("mc.cores", 2L)
+  ...
 )
 }
 \arguments{
@@ -34,10 +34,7 @@ FALSE.}
 \item{seg_func}{a segregation function from the censeg package. Defaults to
 `calc_theilsH`}
 
-\item{mc.cores}{The number of cores to use, i.e. at most how many child
-processes will be run simultaneously. The option is initialized from
-environment variable MC_CORES if set. Must be at least one,
-and parallelization requires at least two cores.}
+\item{...}{Other parameters to pass to the seg_func.}
 }
 \value{
 data frame with geography-race specific counts for all
@@ -45,8 +42,10 @@ counties or CBSAs.
 }
 \description{
 all_census_seg uses the census api to download race & ethnicity
-data from a specified 5 year ACS survey from the table "B03002". From this
-table the racial groups White, Black, American Indian or Alaskan Native,
+data from a specified 5 year ACS survey from the table "B03002" or the
+decennial census tables P0040\*\* P0050\*\* for the 2000 and 2010 census
+respectively. From these
+tables the racial groups White, Black, American Indian or Alaskan Native,
 Asian, Native Hawaiian or Pacific Islander, some other race, and two or more
 Races are considered and treated as mutually exclusive categories for
 individuals who mark Non-Hispanic. Hispanic individuals are designated as

@@ -4,10 +4,12 @@
 \alias{calc_theilsH}
 \title{Calculate entropy and Theil's-H measure of segregation}
 \usage{
-calc_theilsH(group_tract_df, ...)
+calc_theilsH(group_tract_df, parent_geo = c(), ...)
 }
 \arguments{
 \item{group_tract_df}{race specific df with a count for every census tract}
+
+\item{parent_geo}{character vector of additional columns to subdivide analysis}
 
 \item{...}{added for compatibility}
 }
