@@ -73,7 +73,7 @@ all_census_seg <- function(
     else{
         hier_df <- hier_df[!is.na(type),]
         p_g <- c("cbsacode", "cbsatitle", "type")
-        out_df <- seg_func(hier_df, parent_geo = p_g, ...)
+        out_df <- seg_func(hier_df, parent_geo = p_g, year = year, ...)
     }
 
     copy(out_df)

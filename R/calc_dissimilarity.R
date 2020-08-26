@@ -2,7 +2,7 @@
 #'
 #' @description calculates index of dissimilarity on a dataset
 #'
-#' @param group_tract_df race specific df with a count for every census tract
+#' @param group_df race specific df with a count for every GEOID
 #' @param out_groups character vector indicating the out group of the
 #' comparison. The default behavior selects "NH White" such that
 #' White-Non White segregation is being evaluated.
@@ -19,8 +19,9 @@
 #' @export
 
 calc_dissimilarity <- function(
-    group_tract_df, out_groups = "NH White", parent_geo = c(), ...){
+    group_df, out_groups = "NH White", parent_geo = c(), ...){
 
+    group_tract_df <- copy(group_df)
     ptr_g <- c("GEOID", "OG", "sp", parent_geo)
     pt_g <- c("GEOID", "sp", parent_geo)
     pr_g <- c("OG", "sp", parent_geo)
@@ -36,6 +37,7 @@ calc_dissimilarity <- function(
 
     out_df <- coll_df[,list(DI = sum(dt) * .5), by = p_g]
     out_df[, sp := NULL]
+    out_df[,out_groups := paste0(out_groups, collapse = "_")]
 
     copy(out_df)
 }

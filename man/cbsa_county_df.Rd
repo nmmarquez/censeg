@@ -8,7 +8,7 @@
 A data frame with 1808 rows and 6 variables:
 \describe{
   \item{cbsacode}{FIPS code for the CBSA}
-  \item{cbsattitle}{Common name of the CBSA}
+  \item{cbsatitle}{Common name of the CBSA}
   \item{STATE}{State FIPS code as character with leading zeros}
   \item{COUNTY}{County FIPS code as character with leading zeros}
   \item{statename}{name of state}

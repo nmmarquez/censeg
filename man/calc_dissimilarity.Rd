@@ -4,15 +4,10 @@
 \alias{calc_dissimilarity}
 \title{Calculate index of dissimilarity measure of segregation}
 \usage{
-calc_dissimilarity(
-  group_tract_df,
-  out_groups = "NH White",
-  parent_geo = c(),
-  ...
-)
+calc_dissimilarity(group_df, out_groups = "NH White", parent_geo = c(), ...)
 }
 \arguments{
-\item{group_tract_df}{race specific df with a count for every census tract}
+\item{group_df}{race specific df with a count for every GEOID}
 
 \item{out_groups}{character vector indicating the out group of the
 comparison. The default behavior selects "NH White" such that

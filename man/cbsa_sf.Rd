@@ -8,7 +8,8 @@
 A data frame with 1808 rows and 6 variables:
 \describe{
   \item{cbsacode}{FIPS code for the CBSA}
-  \item{cbsattitle}{Common name of the CBSA}
+  \item{cbsatitle}{Common name of the CBSA}
+  \item{geometry}{SF geometry}
   \item{type}{Type of Area (either Metropolitan or Micropolitan)}
 }
 }

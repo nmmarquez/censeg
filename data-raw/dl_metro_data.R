@@ -43,3 +43,5 @@ cbsa_sf <- cbsa_sf_old %>%
 
 use_data(cbsa_county_df, overwrite = TRUE)
 use_data(cbsa_sf, overwrite = TRUE)
+
+block_groups(state = "CA", class = "sf")

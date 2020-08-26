@@ -2,7 +2,7 @@
 #'
 #' @description calculates Theil's-H and Entropy on a dataset
 #'
-#' @param group_tract_df race specific df with a count for every census tract
+#' @param group_df race specific df with a count for every GEOID
 #' @param parent_geo character vector of additional columns to subdivide analysis
 #' @param ... added for compatibility
 #'
@@ -15,8 +15,9 @@
 #'
 #' @export
 
-calc_theilsH <- function(group_tract_df, parent_geo = c(), ...){
+calc_theilsH <- function(group_df, parent_geo = c(), ...){
 
+    group_tract_df <- copy(group_df)
     ptr_g <- c("GEOID", "race", "sp", parent_geo)
     pt_g <- c("GEOID", "sp", parent_geo)
     pr_g <- c("race", "sp", parent_geo)
