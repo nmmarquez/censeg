@@ -40,13 +40,23 @@ geo_distance <- function(
         if(geo_char == 11){
             geo_sf <- do.call(
                 sf:::rbind.sf,
-                lapply(st, tracts, year = year, class = "sf"))
+                lapply(st, tracts, year = year, class = "sf", cb = TRUE))
         }
 
         if(geo_char == 12){
             geo_sf <- do.call(
                 sf:::rbind.sf,
-                lapply(st, block_groups, year = year, class = "sf"))
+                lapply(st, block_groups, year = year, class = "sf", cb = TRUE))
+        }
+
+        if(year == 2010 | year == 2000){
+            geo_sf$GEOID <- paste0(
+                geo_sf$STATEFP, geo_sf$COUNTYFP, geo_sf$TRACT)
+        }
+
+        if(year == 1990){
+            geo_sf$GEOID <- paste0(
+                geo_sf$ST, geo_sf$CO, geo_sf$TRACTBASE, "0")
         }
 
         sub_geo_sf <- geo_sf[geo_sf$GEOID %in% GEOIDs,]

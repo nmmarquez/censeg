@@ -24,7 +24,7 @@
 #' access. Defaults to FALSE; if TRUE, only needs to be called once per dataset.
 #' If variables dataset is already cached via the load_variables function, this
 #' can be bypassed.
-#' @param year The year, or endyear, of the ACS sample. 2009 through 2018 are
+#' @param year The year, or endyear, of the census. 1990, 2000, and 2010 are
 #' available. Defaults to 2010.
 #' @param key Your Census API key. Obtain one at
 #' http://api.census.gov/data/key_signup.html
@@ -60,7 +60,7 @@ get_decennial_race <- function(
     as.data.table = TRUE,
     ...){
 
-    if(year != 2010 & year != 2000){
+    if(year != 2010 & year != 2000 & year != 1990){
         stop("Must provide a valid census year.")
     }
 
@@ -111,6 +111,17 @@ get_decennial_race <- function(
                 "NH Other" = "P004010",
                 "NH TOMR"  = "P004011",
                 "Hispanic" = "P004002"
+            )
+        }
+
+        if(year == 1990){
+            variables <- c(
+                "NH White" = "P0100001",
+                "Black" = "P0060002",
+                "AIAN"  = "P0060003",
+                "API"   = "P0060004",
+                "Other" = "P0060005",
+                "Hispanic" = "P0080001"
             )
         }
 

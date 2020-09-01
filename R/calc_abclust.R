@@ -15,7 +15,7 @@
 #' @return data frame with measures of absolute clustering
 #'
 #' @examples
-#' calc_abclust(get_acs_race("DC"))
+#' calc_abclust(get_decennial_race("DC"))
 #'
 #' @export
 

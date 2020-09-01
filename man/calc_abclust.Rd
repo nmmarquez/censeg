@@ -32,6 +32,6 @@ data frame with measures of absolute clustering
 calculates absolute clustering on a dataset
 }
 \examples{
-calc_abclust(get_acs_race("DC"))
+calc_abclust(get_decennial_race("DC"))
 
 }

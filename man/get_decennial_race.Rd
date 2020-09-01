@@ -35,7 +35,7 @@ access. Defaults to FALSE; if TRUE, only needs to be called once per dataset.
 If variables dataset is already cached via the load_variables function, this
 can be bypassed.}
 
-\item{year}{The year, or endyear, of the ACS sample. 2009 through 2018 are
+\item{year}{The year, or endyear, of the census. 1990, 2000, and 2010 are
 available. Defaults to 2010.}
 
 \item{key}{Your Census API key. Obtain one at
