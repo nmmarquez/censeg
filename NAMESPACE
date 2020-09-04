@@ -3,6 +3,8 @@
 export(all_census_seg)
 export(calc_abclust)
 export(calc_dissimilarity)
+export(calc_lisa)
+export(calc_locquo)
 export(calc_theilsH)
 export(census_seg)
 export(geo_distance)

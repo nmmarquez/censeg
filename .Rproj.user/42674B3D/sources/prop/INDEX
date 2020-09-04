@@ -8,6 +8,8 @@
 ~%2FDocuments%2Fnbseg%2FR%2Fall_census_seg.R="11FFE80C"
 ~%2FDocuments%2Fnbseg%2FR%2Fcalc_abclust.R="9FCED783"
 ~%2FDocuments%2Fnbseg%2FR%2Fcalc_dissimilarity.R="EA2D9492"
+~%2FDocuments%2Fnbseg%2FR%2Fcalc_lisa.R="B24F8FC6"
+~%2FDocuments%2Fnbseg%2FR%2Fcalc_locquo.R="3B35A5A0"
 ~%2FDocuments%2Fnbseg%2FR%2Fcalc_theilsH.R="61C09191"
 ~%2FDocuments%2Fnbseg%2FR%2Fcensus_seg.R="273FD494"
 ~%2FDocuments%2Fnbseg%2FR%2Fdata.R="4821F6B9"
@@ -18,3 +20,4 @@
 ~%2FDocuments%2Fnbseg%2FR%2Fhello.R="993D2054"
 ~%2FDocuments%2Fnbseg%2FREADME.md="D18B1889"
 ~%2FDocuments%2Fnbseg%2Fdata-raw%2Fdl_metro_data.R="8CC7D09A"
+~%2FDownloads%2Fsim_theilsH_durham.R="5702322E"
