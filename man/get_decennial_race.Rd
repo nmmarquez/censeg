@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_decennial_race.R
 \name{get_decennial_race}
 \alias{get_decennial_race}
-\title{A wrapper function of get_acs that downloads race data from census API}
+\title{A wrapper function of get_decennial that downloads race data from census API}
 \usage{
 get_decennial_race(
   state = NULL,

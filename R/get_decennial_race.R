@@ -1,4 +1,4 @@
-#' A wrapper function of get_acs that downloads race data from census API
+#' A wrapper function of get_decennial that downloads race data from census API
 #'
 #' @description get_decennial_race uses the census api to download race &
 #' ethnicity data from a specified decennial census.

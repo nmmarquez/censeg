@@ -12,7 +12,8 @@ census_seg(
   cache_table = FALSE,
   year = 2010,
   key = NULL,
-  seg_func = calc_theilsH
+  seg_func = calc_theilsH,
+  ...
 )
 }
 \arguments{
@@ -42,6 +43,8 @@ http://api.census.gov/data/key_signup.html}
 
 \item{seg_func}{a segregation function from the censeg package. Defaults to
 `calc_theilsH`}
+
+\item{...}{Other parameters to pass to the seg_func.}
 }
 \value{
 data frame with geography-race specific counts for a given state,

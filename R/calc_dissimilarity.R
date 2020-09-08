@@ -6,6 +6,9 @@
 #' @param out_groups character vector indicating the out group of the
 #' comparison. The default behavior selects "NH White" such that
 #' White-Non White segregation is being evaluated.
+#' @param alt_groups character vector indicating the alt groups of the
+#' comparison. The default behavior selects NULL such that
+#' all groups except the out group are selected.
 #' @param parent_geo character vector of additional columns to subdivide analysis
 #' @param ... added for compatibility
 #'
@@ -19,9 +22,14 @@
 #' @export
 
 calc_dissimilarity <- function(
-    group_df, out_groups = "NH White", parent_geo = c(), ...){
+    group_df, out_groups = "NH White", alt_groups = NULL, parent_geo = c(), ...){
 
-    group_tract_df <- copy(group_df)
+    if(is.null(alt_groups)){
+        alt_groups <- unique(group_df$race)
+        alt_groups <- alt_groups[!(alt_groups %in% out_groups)]
+    }
+
+    group_tract_df <- group_df[race %in% out_groups | race %in% alt_groups,]
     ptr_g <- c("GEOID", "OG", "sp", parent_geo)
     pt_g <- c("GEOID", "sp", parent_geo)
     pr_g <- c("OG", "sp", parent_geo)
@@ -38,6 +46,7 @@ calc_dissimilarity <- function(
     out_df <- coll_df[,list(DI = sum(dt) * .5), by = p_g]
     out_df[, sp := NULL]
     out_df[,out_groups := paste0(out_groups, collapse = "_")]
+    out_df[,alt_groups := paste0(alt_groups, collapse = "_")]
 
     copy(out_df)
 }

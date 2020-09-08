@@ -1,0 +1,48 @@
+---
+title: "Using Custom Variables with the censeg Package"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Using Custom Variables with the censeg Package}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
+
+```{r, message=FALSE, warning=FALSE}
+rm(list = ls())
+library(censeg)
+library(ggplot2)
+library(dplyr)
+library(stringr)
+# be sure to cache geographies to make re-calculations easier
+options(tigris_use_cache=TRUE)
+
+# get all variables which relate to the ASIAN ALONE WITH ONE ASIAN CATEGORY
+noout <- capture.output(cen10_vars_df <- load_variables(2010, "sf1") %>%
+    filter(str_starts(concept, "ASIAN ALONE WITH ONE ASIAN CATEGORY")) %>%
+    # clean up the names of the data
+    mutate(race = str_split_fixed(label, "!!", 2)[,2]) %>%
+    mutate(race = str_split_fixed(race, " \\(", 2)[,1]) %>%
+    filter(race != "") %>%
+    select(name, race))
+
+# restructure to a format that is amenable to the get_decennial function
+cen10_vec <- cen10_vars_df$name
+names(cen10_vec) <- cen10_vars_df$race
+
+# get the data at the tract level for all metro areas with identifiers
+group_df <- get_decennial_metro("tract", cen10_vec, year = 2010)
+# rename variable to race because that's how the calc_functions need them
+setnames(group_df, "variable", "race")
+# only look at locations with an associated metro area
+metro_only_df <- group_df[!is.na(cbsacode), ]
+
+# calculate Vietnamese clusters for all metro areas in the US
+viet_lclust_df <- calc_lisa(
+    metro_only_df, "Vietnamese", parent_geo = "cbsatitle", year = 2010)
+
+```
+
+```{r}
+# Locations by their signficant number of Vietnamese clusters
+viet_lclust_df[,.(N = sum((Ip < .05) & hiclust)), by="cbsatitle"][order(-N),]
+```

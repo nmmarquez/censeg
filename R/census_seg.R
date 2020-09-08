@@ -31,6 +31,7 @@
 #' http://api.census.gov/data/key_signup.html
 #' @param seg_func a segregation function from the censeg package. Defaults to
 #' `calc_theilsH`
+#' @param ... Other parameters to pass to the seg_func.
 #'
 #' @return data frame with geography-race specific counts for a given state,
 #' county, or CBSA.
@@ -54,7 +55,9 @@ census_seg <- function(
     cache_table = FALSE,
     year = 2010,
     key = NULL,
-    seg_func = calc_theilsH){
+    seg_func = calc_theilsH,
+    ...
+    ){
 
     if(year == 2010 | year == 2000){
         race_df <- get_decennial_race(
@@ -78,7 +81,7 @@ census_seg <- function(
             key = key)
     }
 
-    seg_df <- seg_func(race_df)
+    seg_df <- seg_func(race_df, ...)
 
     if(is.null(metro)){
         seg_df[, state := state]

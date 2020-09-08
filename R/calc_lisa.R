@@ -35,7 +35,7 @@ calc_lisa <- function(
 
     neigh_df <- rbindlist(lapply(1:nrow(id_df), function(i){
         geo_neighbors(
-            merge(id_df[i,], comb_df, all.x = TRUE, by = p_g)$GEOID,
+            merge(id_df[i,], sub_df, all.x = TRUE, by = p_g)$GEOID,
             year = year)
     }))
 

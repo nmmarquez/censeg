@@ -4,7 +4,13 @@
 \alias{calc_dissimilarity}
 \title{Calculate index of dissimilarity measure of segregation}
 \usage{
-calc_dissimilarity(group_df, out_groups = "NH White", parent_geo = c(), ...)
+calc_dissimilarity(
+  group_df,
+  out_groups = "NH White",
+  alt_groups = NULL,
+  parent_geo = c(),
+  ...
+)
 }
 \arguments{
 \item{group_df}{race specific df with a count for every GEOID}
@@ -12,6 +18,10 @@ calc_dissimilarity(group_df, out_groups = "NH White", parent_geo = c(), ...)
 \item{out_groups}{character vector indicating the out group of the
 comparison. The default behavior selects "NH White" such that
 White-Non White segregation is being evaluated.}
+
+\item{alt_groups}{character vector indicating the alt groups of the
+comparison. The default behavior selects NULL such that
+all groups except the out group are selected.}
 
 \item{parent_geo}{character vector of additional columns to subdivide analysis}
 
